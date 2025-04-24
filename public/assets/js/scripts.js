@@ -200,9 +200,10 @@ En esta batalla`
         this.classList.add('hidden');
     });
 
-    // Cerrar menú
+    // Modificar el event listener del botón cerrar
     closeMenu.addEventListener('click', function() {
         sidebar.classList.remove('active');
+        sidebar.classList.add('hidden');
         menuToggle.classList.remove('hidden');
     });
 
@@ -413,9 +414,9 @@ En esta batalla`
                 <div class="repertorio-creator">
                     <div class="creator-header">
                         <input type="text" 
-                               class="repertorio-title" 
-                               placeholder="Título del Repertorio"
-                               value="Reunión ${new Date().toLocaleDateString()}">
+                            class="repertorio-title" 
+                            placeholder="Título del Repertorio"
+                            value="Reunión ${new Date().toLocaleDateString()}">
                         <button class="save-btn">
                             <i class="fas fa-save"></i> Guardar
                         </button>
@@ -521,9 +522,8 @@ En esta batalla`
                 <div class="modal-body">
                     <div class="selector-search">
                         <input type="text" 
-                               class="search-input" 
-                               placeholder="Buscar por título o autor...">
-                        <div class="selector-categories">
+                            class="search-input" 
+                            class="selector-categories">
                             <button class="category-filter active" data-category="todos">Todos</button>
                             <button class="category-filter" data-category="Adoración">Adoración</button>
                             <button class="category-filter" data-category="Alabanza">Alabanza</button>
