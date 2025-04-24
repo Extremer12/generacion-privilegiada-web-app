@@ -26,63 +26,78 @@
 
         <aside id="sidebar" class="hidden">
             <div class="sidebar-content">
+                <!-- Header del Sidebar -->
                 <div class="sidebar-header">
                     <img src="assets/images/logo.png" alt="Logo" class="sidebar-logo">
-                    <button id="closeMenu" class="close-menu">
+                    <button id="closeMenu">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
 
-                <!-- Menú de navegación -->
+                <!-- Navegación principal -->
                 <nav class="sidebar-nav">
                     <ul>
-                        <!-- Opciones de autenticación -->
+                        <!-- Autenticación -->
                         <li id="authButtons">
                             <a href="#" id="showLoginModal">
-                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Iniciar Sesión</span>
                             </a>
                         </li>
+                        <!-- Perfil -->
                         <li id="profileButton">
                             <a href="#" id="showProfileModal">
-                                <i class="fas fa-user-circle"></i> Mi Perfil
+                                <i class="fas fa-user-circle"></i>
+                                <span>Mi Perfil</span>
                             </a>
                         </li>
-                        <!-- Resto de opciones -->
+                        <!-- Roles -->
                         <li>
                             <a href="#" id="showRolesModal">
-                                <i class="fas fa-users"></i> Roles
+                                <i class="fas fa-users"></i>
+                                <span>Roles</span>
                             </a>
                         </li>
+                        <!-- Avisos -->
                         <li>
                             <a href="#" id="showAvisosModal">
-                                <i class="fas fa-bell"></i> Avisos
+                                <i class="fas fa-bell"></i>
+                                <span>Avisos</span>
                             </a>
                         </li>
+                        <!-- Información -->
                         <li>
                             <a href="#" id="showInfoModal">
-                                <i class="fas fa-info-circle"></i> Información
+                                <i class="fas fa-info-circle"></i>
+                                <span>Información</span>
                             </a>
                         </li>
+                        <!-- Ingresantes -->
                         <li>
                             <a href="#" id="showJoinModal">
-                                <i class="fas fa-user-plus"></i> Ingresantes
+                                <i class="fas fa-user-plus"></i>
+                                <span>Ingresantes</span>
                             </a>
                         </li>
+                        <!-- Panel Coordinador -->
                         <li>
                             <a href="#" id="showCoordinatorPanel">
-                                <i class="fas fa-crown"></i> Panel Coordinador
+                                <i class="fas fa-crown"></i>
+                                <span>Panel Coordinador</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
 
-                <!-- Footer del sidebar -->
+                <!-- Footer del Sidebar -->
                 <div class="sidebar-footer">
                     <a href="#" class="policy-link">
-                        <i class="fas fa-shield-alt"></i> Políticas y Privacidad
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Políticas y Privacidad</span>
                     </a>
                     <button class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
                     </button>
                 </div>
             </div>

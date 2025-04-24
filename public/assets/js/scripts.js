@@ -196,15 +196,15 @@ En esta batalla`
 
     // Toggle menú
     menuToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('active');
-        this.classList.add('hidden');
+        sidebar.classList.remove('hidden');
+        sidebar.classList.add('active');
     });
 
-    // Modificar el event listener del botón cerrar
+    // Reemplazar el event listener del closeMenu
     closeMenu.addEventListener('click', function() {
         sidebar.classList.remove('active');
         sidebar.classList.add('hidden');
-        menuToggle.classList.remove('hidden');
+        menuToggle.classList.remove('hidden'); // Aseguramos que el botón sea visible
     });
 
     // Función para abrir modal
