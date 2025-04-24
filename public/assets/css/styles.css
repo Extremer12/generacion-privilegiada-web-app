@@ -1,0 +1,1832 @@
+:root {
+    --color-background: #121212;
+    --color-text: #ffffff;
+    --color-green: #1DB954;
+    --color-purple: #9B4DEE;
+    --color-gold: #FFD700;
+    --color-surface: #282828;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+#root {
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Estilos base para elementos comunes */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--color-green);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-purple);
+}
+
+/* Mejora del Header */
+header {
+    background: linear-gradient(to right, var(--color-surface), rgba(155, 77, 238, 0.1));
+    padding: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '♪';
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    color: rgba(155, 77, 238, 0.1);
+    font-size: 40px;
+    animation: floatingNotes 8s linear infinite;
+}
+
+header::after {
+  content: '♫';
+  position: absolute;
+  top: -10px;
+  right: 15%;
+  color: rgba(29, 185, 84, 0.1);
+  font-size: 30px;
+  animation: floatingNotes 6s linear infinite;
+}
+
+@keyframes floatingNotes {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Mejora del logo y menú toggle */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+    height: 45px;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+#menuToggle {
+    background: linear-gradient(45deg, var(--color-purple), var(--color-green));
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#menuToggle:hover {
+  transform: rotate(90deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mejora de fondos y efectos visuales */
+.song-card, .modal-content, .profile-container, .coordinator-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.song-card::before {
+  content: '♪';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 40px;
+  color: rgba(155, 77, 238, 0.05);
+  transform: rotate(-15deg);
+}
+
+/* Fondos con gradientes sutiles */
+.modal-content {
+  background: linear-gradient(135deg, 
+      var(--color-surface), 
+      rgba(155, 77, 238, 0.05) 100%);
+}
+
+.search-container {
+  background: linear-gradient(135deg, 
+      var(--color-surface), 
+      rgba(29, 185, 84, 0.05) 100%);
+}
+
+/* Animación de notas musicales flotando en el fondo */
+.floating-notes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.note {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.03);
+  animation: float linear infinite;
+}
+
+.note:nth-child(1) { left: 10%; animation-duration: 15s; }
+.note:nth-child(2) { left: 30%; animation-duration: 12s; animation-delay: -3s; }
+.note:nth-child(3) { left: 50%; animation-duration: 18s; animation-delay: -6s; }
+.note:nth-child(4) { left: 70%; animation-duration: 14s; animation-delay: -9s; }
+.note:nth-child(5) { left: 90%; animation-duration: 16s; animation-delay: -12s; }
+
+@keyframes float {
+  0% {
+    top: -10%;
+    transform: translateX(-50%) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    transform: translateX(50%) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+footer {
+  background-color: var(--color-surface);
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar {
+  background-color: var(--color-surface);
+  width: 250px;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.sidebar a:hover {
+  background-color: #3a3a3a;
+}
+
+.player {
+  background-color: var(--color-surface);
+  padding: 20px;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+}
+
+.song-details {
+  margin-top: 20px;
+}
+
+button {
+  background-color: var(--color-green);
+  color: var(--color-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-purple);
+}
+
+.card {
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.card-title {
+  color: var(--color-text);
+  font-size: 1.5em;
+}
+
+.card-content {
+  color: #b3b3b3;
+}
+
+input, textarea {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-surface);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid var(--color-green);
+}
+
+/* Header y navegación */
+header {
+  padding: 1rem;
+  background-color: var(--color-surface);
+  position: relative;
+  z-index: 999; /* Menor que el sidebar */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  position: relative;
+  z-index: 998; /* Menor que el header */
+}
+
+#menuToggle {
+  background: transparent;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#menuToggle.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, 
+        var(--color-surface) 0%,
+        rgba(155, 77, 238, 0.1) 100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo {
+  height: 40px;
+}
+
+.close-menu {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+close-menu:hover {
+  transform: rotate(90deg);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-profile i {
+  font-size: 2rem;
+  color: var(--color-gold);
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profile-preview {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-content ul {
+  list-style: none;
+}
+
+.sidebar-content li {
+  margin-bottom: 1rem;
+}
+
+/* Personalizar scroll del sidebar */
+.sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background-color: var(--color-purple);
+    border-radius: 3px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gold);
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  gap: 1rem;
+}
+
+.sidebar-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-gold);
+}
+
+.sidebar-nav i {
+  width: 20px;
+  text-align: center;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.submenu.active {
+  max-height: 300px;
+}
+
+.submenu a {
+  padding-left: 3.5rem;
+}
+
+.submenu-toggle {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+submenu-toggle.active i {
+  transform: rotate(180deg);
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.policy-link {
+  color: var(--color-text);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.policy-link:hover {
+  opacity: 1;
+  color: var(--color-gold);
+}
+
+#profileButton, .logout-btn {
+  display: none;
+}
+
+.logout-btn {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+}
+
+.logout-btn:hover {
+  background-color: var(--color-purple);
+}
+
+/* Animación para el botón toggle */
+#menuToggle {
+  position: relative;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+}
+
+#menuToggle.active {
+  transform: rotate(90deg);
+}
+
+/* Ajustar estilos de la sección de búsqueda */
+.search-container {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.categories {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    border: 1px solid var(--color-purple);
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: var(--color-purple);
+}
+
+.category-btn.active {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+}
+
+/* Ajustar el contenedor principal */
+main {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.songs-list {
+    margin-top: 2rem;
+}
+
+/* Lista de canciones */
+.songs-list {
+  margin-top: 2rem;
+}
+
+/* Estilos para las tarjetas de canciones */
+.song-card {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.song-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--color-purple), var(--color-green));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-gold);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.song-card:hover::before {
+    opacity: 0.1;
+}
+
+.song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.song-title {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin: 0;
+    font-weight: 600;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.song-category {
+    color: var(--color-green);
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(29, 185, 84, 0.1);
+    border-radius: 15px;
+}
+
+.song-author {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+}
+
+.song-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn i {
+    font-size: 1rem;
+}
+
+.view-btn {
+    background-color: var(--color-purple);
+    color: var(--color-text);
+}
+
+.view-btn:hover {
+    background-color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.favorite-btn {
+    background: transparent;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+    background-color: var(--color-gold);
+    color: var(--color-background);
+    transform: scale(1.1);
+}
+
+.favorite-btn.active {
+    background-color: var(--color-gold);
+    color: var(--color-background);
+}
+
+/* Estilos para la vista detallada de la canción */
+.song-details {
+    padding: 1rem;
+}
+
+.song-details-header {
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    background-color: transparent;
+    color: var(--color-green);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.song-metadata {
+    color: var(--color-purple);
+    margin-bottom: 1rem;
+}
+
+.song-content {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.chords {
+    color: var(--color-gold);
+    font-family: monospace;
+    margin-bottom: 1rem;
+}
+
+.lyrics {
+    white-space: pre-line;
+    line-height: 1.8;
+}
+
+.song-resources {
+    background-color: var(--color-surface);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.resource-btn {
+    margin: 0.5rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-green);
+}
+
+.download-pdf-btn {
+    margin: 0.5rem;
+    background-color: var(--color-gold);
+    color: var(--color-background);
+}
+
+/* Estilos para favoritos */
+.song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.active {
+    color: var(--color-gold);
+}
+
+/* Estilos para el reproductor de audio */
+.audio-player {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    background-color: #444;
+    height: 4px;
+    border-radius: 2px;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.progress {
+    background-color: var(--color-green);
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    transition: width 0.3s linear;
+}
+
+.time {
+    color: var(--color-text);
+    font-size: 0.8rem;
+}
+
+/* Estilos para controles de transposición */
+.transpose-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.transpose-btn {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+/* Estilos para acciones de canciones */
+.song-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.preview-btn, .presentation-btn {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+}
+
+/* Estilos para el panel de coordinador */
+.coordinator-panel {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.panel-header h2 {
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cancionero-creator {
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.creator-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cancionero-title {
+    flex-grow: 1;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+}
+
+.add-section-btn {
+    background-color: var(--color-green);
+    color: var(--color-text);
+}
+
+.section-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    flex-grow: 1;
+}
+
+.remove-section-btn {
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.remove-section-btn:hover {
+    color: #ff4444;
+    opacity: 1;
+}
+
+.song-selector {
+    width: 100%;
+    min-height: 150px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.song-selector option {
+    padding: 0.5rem;
+}
+
+.preview-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.preview-section h4 {
+    color: var(--color-purple);
+    margin-bottom: 0.5rem;
+}
+
+.preview-section ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.preview-section li {
+    color: var(--color-text);
+    padding: 0.3rem 0;
+}
+
+.panel-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.generate-pdf-btn {
+    background-color: var(--color-purple);
+}
+
+.save-cancionero-btn {
+    background-color: var(--color-gold);
+}
+
+/* Estilos para el panel de coordinador */
+.repertorio-creator {
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.etapas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.etapa-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.etapa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.etapa-header h3 {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.add-song-btn {
+    background-color: transparent;
+    color: var(--color-text);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-green);
+}
+
+.add-song-btn:hover {
+    background-color: var(--color-green);
+}
+
+.etapa-songs {
+    padding: 1rem;
+    min-height: 50px;
+}
+
+.etapa-song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.empty-message {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-style: italic;
+}
+
+.remove-song-btn {
+    background-color: transparent;
+    color: #ff4444;
+    padding: 0.3rem;
+}
+
+.songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.select-song-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-song-btn:disabled {
+    background-color: var(--color-green);
+    cursor: default;
+}
+
+/* Estilos para avisos */
+.notice-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 1rem;
+}
+
+.notice-date {
+    color: var(--color-gold);
+    font-size: 0.8rem;
+    min-width: 40px;
+}
+
+.notice-content h4 {
+    color: var(--color-purple);
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.notice-content p {
+    color: var(--color-text);
+    font-size: 0.8rem;
+}
+
+/* Estilos para información */
+.info-section {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-section h4 {
+    color: var(--color-green);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.info-section p {
+    color: var(--color-text);
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Estilos para el formulario de ingresantes */
+.join-form {
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--color-gold);
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: var(--color-text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-green);
+    outline: none;
+}
+
+.form-group select option {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.5rem;
+}
+
+.form-group select:focus {
+    border-color: var(--color-green);
+    outline: none;
+}
+
+/* Ajustar el estilo del select en diferentes navegadores */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+/* Ajuste específico para Firefox */
+@-moz-document url-prefix() {
+    .form-group select {
+        color: var(--color-text);
+        background-color: var(--color-surface);
+    }
+    
+    .form-group select option {
+        background-color: var(--color-surface);
+    }
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--color-green);
+    color: var(--color-text);
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--color-purple);
+}
+
+/* Estilos para el enlace de políticas */
+.policy-link {
+    color: var(--color-text);
+    opacity: 0.7;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.policy-link:hover {
+    opacity: 1;
+    color: var(--color-green);
+}
+
+/* Estilos para modales */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--color-surface);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    color: var(--color-gold);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Personalizar scroll del modal */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: var(--color-purple);
+    border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gold);
+}
+
+/* Estilos para las descripciones de los modales */
+.modal-description {
+    padding: 1rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para la grid de roles */
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Estilos para las tarjetas de roles */
+.role-card {
+    background: linear-gradient(135deg, var(--color-surface), rgba(155, 77, 238, 0.1));
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-purple);
+}
+
+.role-card.active {
+    border-color: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-surface), rgba(255, 215, 0, 0.1));
+}
+
+.role-card i {
+    font-size: 2rem;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.role-card h4 {
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* Efecto de selección */
+.role-card.active::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--color-gold);
+    color: var(--color-background);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* Botón volver arriba */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-purple);
+    color: var(--color-text);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--color-gold);
+    transform: translateY(-3px);
+}
+
+.scroll-top-btn.visible {
+    display: flex;
+}
+
+/* Estilos para el selector de búsqueda */
+.selector-search {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.selector-categories {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-purple);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-filter.active {
+    background-color: var(--color-purple);
+    border-color: var(--color-purple);
+}
+
+/* Estilos para autenticación */
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.auth-tab.active {
+    opacity: 1;
+    border-bottom-color: var(--color-purple);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+/* Estilos para auth buttons */
+#authButtons {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#showProfileModal {
+    display: none;
+}
+
+/* Estilos para el perfil */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.profile-header {
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(45deg, var(--color-purple), var(--color-green));
+}
+
+.profile-avatar-container {
+    margin-bottom: 1rem;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--color-surface);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.profile-role {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.profile-sections {
+    padding: 2rem;
+}
+
+.stat-item {
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilos para el perfil */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar-container {
+    position: relative;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--color-purple);
+    color: var(--color-text);
+    border: 3px solid var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.change-avatar-btn:hover {
+    transform: scale(1.1);
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-name {
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.profile-role {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+}
+
+.profile-sections {
+    display: grid;
+    gap: 2rem;
+}
+
+.profile-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.theme-selector h5 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.color-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.color-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.color-preview {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.color-preview.default {
+    background: linear-gradient(45deg, var(--color-purple), var(--color-green));
+}
+
+.color-preview.blue {
+    background: linear-gradient(45deg, #2196F3, #00BCD4);
+}
+
+.color-preview.red {
+    background: linear-gradient(45deg, #F44336, #FF9800);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.stat-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    color: var(--color-purple);
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    opacity: 0.7;
+}
+
+/* Estilos para el preview del perfil en el sidebar */
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(45deg, rgba(155, 77, 238, 0.1), rgba(29, 185, 84, 0.1));
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.avatar-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-purple);
+}
+
+/* Estilos para el editor de perfil */
+.profile-editor {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-avatar-editor {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.avatar-preview {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-purple);
+}
+
+.change-avatar-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-background);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.change-avatar-btn:hover {
+    transform: scale(1.1);
+}
+
+.profile-form {
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-gold);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--color-text);
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Estilos para el botón de perfil */
+#profileButton a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#profileButton a:hover {
+    background-color: rgba(155, 77, 238, 0.1);
+    color: var(--color-purple);
+}
+
+#profileButton i {
+    font-size: 1.2rem;
+    color: var(--color-purple);
+}

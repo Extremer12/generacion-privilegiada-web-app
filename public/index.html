@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generación Privilegiada - app web diseñada como herramienta para Ministerio de Música de una iglesia, facilitando la gestión de canciones, ensayos y comunicación entre los miembros.">
+    <meta name="keywords" content="música, iglesia, ministerio, adoración, alabanza">
+    <meta name="author" content="Cristian Bordón">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Generación Privilegiada">
+    <title>Generación Privilegiada</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="root">
+        <header>
+            <nav>
+                <button id="menuToggle">☰</button>
+                <img src="assets/images/logo.png" alt="Generación Privilegiada" class="logo">
+            </nav>
+        </header>
+
+        <aside id="sidebar" class="hidden">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <img src="assets/images/logo.png" alt="Logo" class="sidebar-logo">
+                    <button id="closeMenu" class="close-menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Menú de navegación -->
+                <nav class="sidebar-nav">
+                    <ul>
+                        <!-- Opciones de autenticación -->
+                        <li id="authButtons">
+                            <a href="#" id="showLoginModal">
+                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                        </li>
+                        <li id="profileButton">
+                            <a href="#" id="showProfileModal">
+                                <i class="fas fa-user-circle"></i> Mi Perfil
+                            </a>
+                        </li>
+                        <!-- Resto de opciones -->
+                        <li>
+                            <a href="#" id="showRolesModal">
+                                <i class="fas fa-users"></i> Roles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="showAvisosModal">
+                                <i class="fas fa-bell"></i> Avisos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="showInfoModal">
+                                <i class="fas fa-info-circle"></i> Información
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="showJoinModal">
+                                <i class="fas fa-user-plus"></i> Ingresantes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="showCoordinatorPanel">
+                                <i class="fas fa-crown"></i> Panel Coordinador
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer del sidebar -->
+                <div class="sidebar-footer">
+                    <a href="#" class="policy-link">
+                        <i class="fas fa-shield-alt"></i> Políticas y Privacidad
+                    </a>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section class="search-section">
+                <input type="text" placeholder="Buscar canciones..." class="search-input">
+                <div class="categories">
+                    <button class="category-btn">Alabanza</button>
+                    <button class="category-btn">Adoración</button>
+                    <button class="category-btn">Warfare</button>
+                    <button class="category-btn">Intimidad</button>
+                    <button class="category-btn">Declaración</button>
+                </div>
+            </section>
+
+            <section class="songs-list">
+                <!-- Aquí se mostrarán las canciones -->
+            </section>
+        </main>
+    </div>
+
+    <div class="floating-notes">
+        <span class="note">♪</span>
+        <span class="note">♫</span>
+        <span class="note">♩</span>
+        <span class="note">♬</span>
+        <span class="note">♪</span>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Información</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-description">
+                Encuentra aquí toda la información relevante sobre horarios de ensayo y contactos del ministerio.
+            </div>
+            <div class="modal-body">
+                <div class="info-section">
+                    <h4>Horarios de Ensayo</h4>
+                    <p>Sábados: 18:00 - 20:00</p>
+                    <p>Domingos: 08:00 - 09:00</p>
+                </div>
+                <div class="info-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> musica@iglesia.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rolesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-users"></i> Roles del Ministerio</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-description">
+                Selecciona tu rol dentro del ministerio para personalizar tu experiencia.
+            </div>
+            <div class="modal-body">
+                <div class="roles-grid">
+                    <div class="role-card" data-role="baterista">
+                        <i class="fas fa-drum"></i>
+                        <h4>Baterista</h4>
+                    </div>
+                    <div class="role-card" data-role="guitarrista">
+                        <i class="fas fa-guitar"></i>
+                        <h4>Guitarrista</h4>
+                    </div>
+                    <div class="role-card" data-role="cantante">
+                        <i class="fas fa-microphone"></i>
+                        <h4>Cantante</h4>
+                    </div>
+                    <div class="role-card" data-role="tecladista">
+                        <i class="fas fa-music"></i>
+                        <h4>Tecladista</h4>
+                    </div>
+                    <div class="role-card" data-role="sonidista">
+                        <i class="fas fa-sliders-h"></i>
+                        <h4>Sonidista</h4>
+                    </div>
+                    <div class="role-card" data-role="multimedia">
+                        <i class="fas fa-desktop"></i>
+                        <h4>Multimedia</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="avisosModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-bell"></i> Avisos</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-description">
+                Mantente al día con los últimos anuncios y actualizaciones del ministerio.
+            </div>
+            <div class="modal-body">
+                <div class="notice-list">
+                    <div class="notice-item">
+                        <span class="notice-date">24/04</span>
+                        <div class="notice-content">
+                            <h4>Ensayo General</h4>
+                            <p>Este sábado a las 18:00hs</p>
+                        </div>
+                    </div>
+                    <div class="notice-item">
+                        <span class="notice-date">25/04</span>
+                        <div class="notice-content">
+                            <h4>Nuevo Repertorio</h4>
+                            <p>Actualización disponible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Ingresantes</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-description">
+                Formulario para nuevos integrantes.
+            </div>
+            <div class="modal-body">
+                <form id="joinForm">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Instrumento</label>
+                        <select required>
+                            <option value="">Seleccionar...</option>
+                            <option value="bateria">Batería</option>
+                            <option value="guitarra">Guitarra</option>
+                            <option value="teclado">Teclado</option>
+                            <option value="voz">Voz</option>
+                            <option value="bajo">Bajo</option>
+                            <option value="sonido">Sonido</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar los modales de usuario -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle"></i> Iniciar Sesión</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-description">
+                Inicia sesión para acceder a todas las funciones
+            </div>
+            <div class="modal-body">
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="login">Iniciar Sesión</button>
+                        <button class="auth-tab" data-tab="register">Registrarse</button>
+                    </div>
+                    
+                    <form id="loginForm" class="auth-form active">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                    </form>
+
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-user-plus"></i> Registrarse
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle"></i> Mi Perfil</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-editor">
+                    <div class="profile-avatar-editor">
+                        <div class="avatar-preview">
+                            <img src="assets/images/default-avatar.png" alt="Avatar" id="avatarPreview">
+                            <button class="change-avatar-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput" accept="image/*" hidden>
+                        </div>
+                    </div>
+                    
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" id="profileName" placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <select id="profileRole">
+                                <option value="">Seleccionar rol...</option>
+                                <option value="baterista">Baterista</option>
+                                <option value="guitarrista">Guitarrista</option>
+                                <option value="tecladista">Tecladista</option>
+                                <option value="bajista">Bajista</option>
+                                <option value="vocalista">Vocalista</option>
+                                <option value="sonidista">Sonidista</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Biografía</label>
+                            <textarea id="profileBio" placeholder="Cuéntanos sobre ti..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="scrollTopBtn" class="scroll-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>
