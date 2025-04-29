@@ -194,17 +194,52 @@ En esta batalla`
     // Inicializar canciones
     displaySongs();
 
-    // Toggle menú
+    // Toggle menú mejorado
     menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
         sidebar.classList.remove('hidden');
         sidebar.classList.add('active');
+        
+        // Deshabilitar scroll del body cuando el menú está abierto
+        document.body.style.overflow = 'hidden';
     });
 
-    // Reemplazar el event listener del closeMenu
+    // Mejorar el cierre del menú
     closeMenu.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
         sidebar.classList.remove('active');
-        sidebar.classList.add('hidden');
-        menuToggle.classList.remove('hidden'); // Aseguramos que el botón sea visible
+        setTimeout(() => {
+            sidebar.classList.add('hidden');
+        }, 400); // Coincidir con la duración de la transición
+        
+        // Restaurar scroll del body
+        document.body.style.overflow = '';
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (sidebar.classList.contains('active') && 
+            !sidebar.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            setTimeout(() => {
+                sidebar.classList.add('hidden');
+            }, 400);
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Añadir soporte para tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            sidebar.classList.remove('active');
+            setTimeout(() => {
+                sidebar.classList.add('hidden');
+            }, 400);
+            document.body.style.overflow = '';
+        }
     });
 
     // Función para abrir modal

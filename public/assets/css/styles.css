@@ -116,17 +116,21 @@ header::after {
   background: linear-gradient(45deg, var(--color-purple), var(--color-green));
   width: 40px;
   height: 40px;
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1001;
 }
 
 #menuToggle:hover {
-  transform: rotate(90deg);
+  transform: scale(1.1) rotate(90deg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -179,6 +183,8 @@ header::after {
     var(--color-surface),
     rgba(155, 77, 238, 0.05) 100%
   );
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .search-container {
@@ -260,6 +266,7 @@ footer {
     rgba(155, 77, 238, 0.1) 100%
   );
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
   width: 250px;
@@ -572,11 +579,16 @@ nav {
   z-index: 1000;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  visibility: hidden;
+  opacity: 0;
 }
 
 #sidebar.active {
   left: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 .sidebar-header {
@@ -1465,7 +1477,7 @@ main {
 }
 
 /* Ajuste específico para Firefox */
-@-moz-document url-prefix() {
+@supports (-moz-appearance: none) {
   .form-group select {
     color: var(--color-text);
     background-color: var(--color-surface);
@@ -1540,6 +1552,8 @@ main {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transform: translateY(-20px);
   transition: transform 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .modal.active .modal-content {
@@ -2122,10 +2136,21 @@ close-modal:hover {
 
 #profileButton a:hover {
   background-color: rgba(155, 77, 238, 0.1);
-  color: var(--color-purple);
+  color: var (--color-purple);
 }
 
 #profileButton i {
   font-size: 1.2rem;
   color: var(--color-purple);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
